@@ -28,7 +28,7 @@ jobs:
         run: mkdir -p ./testresources/Login1
       - name: copy compiled classes to testresources directory
         working-directory: ./src/Login1
-        run: cp -t  "../../test/Login1 " Login1.class Task.class
+        run: cp -t  "../../test/Login1" Login1.class Task.class
       - name: copy compiled Test classes to testresources directory
         working-directory: ./test/Login1
         run: cp -t  "../../testresources/Login1" Login1Test.class
