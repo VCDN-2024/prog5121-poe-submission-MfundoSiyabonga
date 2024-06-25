@@ -20,7 +20,7 @@ jobs:
           javac -cp
           "../testresources/junit-platform-console-standalone-1.6.0.jar"
           "./Login1/Login1.java" "./ Login1/Task.java"
-          "../test/ Login1/Login1Test.java"
+          "../Login1/Login1Test.java/TaskTest.java"
       - name: List contents of src directory after compile
         working-directory: ./src/Login1
         run: ls
@@ -31,7 +31,7 @@ jobs:
         run: cp -t  "../../test/Login1" Login1.class Task.class
       - name: copy compiled Test classes to testresources directory
         working-directory: ./test/Login1
-        run: cp -t  "../../testresources/Login1" Login1Test.class
+        run: cp -t  "../../testresources/Login1" Login1Test.class TaskTest.class
       - name: List contents test package
         working-directory: ./test/Login1
         run: ls
