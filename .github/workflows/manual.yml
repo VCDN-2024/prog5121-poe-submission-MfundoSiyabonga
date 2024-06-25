@@ -1,0 +1,38 @@
+name: Workflow
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: null
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: List contents
+        run: ls
+      - name: compile classes
+        working-directory: ./src
+        run: >-
+          javac -cp
+          "../testresources/junit-platform-console-standalone-1.6.0.jar"
+          "./Login1/Login1.java" "./ Login1/Task.java"
+          "../test/ Login1/Login1Test.java"
+      - name: List contents of src directory after compile
+        working-directory: ./src/Login1
+        run: ls
+      - name: create testresources/Login1 directory
+        run: mkdir -p ./testresources/Login1
+      - name: copy compiled classes to testresources directory
+        working-directory: ./src/Login1
+        run: cp -t  "../../test/Login1 " Login1.class Task.class
+      - name: copy compiled Test classes to testresources directory
+        working-directory: ./test/Login1
+        run: cp -t  "../../testresources/Login1" Login1Test.class
+      - name: List contents test package
+        working-directory: ./test/Login1
+        run: ls
+
